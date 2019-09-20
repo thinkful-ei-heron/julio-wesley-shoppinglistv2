@@ -23,7 +23,6 @@ function generateItemElement(item) {
     </li>`;
 }
 
-
 function generateShoppingItemsString(shoppingList) {
   console.log("Generating shopping list element");
 
@@ -31,7 +30,6 @@ function generateShoppingItemsString(shoppingList) {
   
   return items.join("");
 }
-
 
 function renderShoppingList() {
   // render the shopping list in the DOM
@@ -41,7 +39,6 @@ function renderShoppingList() {
   // insert that HTML into the DOM
   $('.js-shopping-list').html(shoppingListItemsString);
 }
-
 
 function addItemToShoppingList(itemName) {
   console.log(`Adding "${itemName}" to shopping list`);
@@ -65,7 +62,6 @@ function toggleCheckedForListItem(itemId) {
   item.checked = !item.checked;
 }
 
-
 function getItemIdFromElement(item) {
   return $(item)
     .closest('li')
@@ -81,13 +77,16 @@ function handleItemCheckClicked() {
   });
 }
 
-
+// this function will be remove the item at click.
 function handleDeleteItemClicked() {
-  // this function will be responsible for when users want to delete a shopping list
-  // item
-  console.log('`handleDeleteItemClicked` ran')
+  $('.js-shopping-list').on('click','.js-item-delete', event =>{
+    console.log('`handleDeleteItemClicked` ran');
+    // using this key word may need to use event.currentTarget
+    $(event.currentTarget).closest('li').remove();
+    
+  });
+  
 }
-
 // this function will be our callback when the page loads. it's responsible for
 // initially rendering the shopping list, and activating our individual functions
 // that handle new item submission and user clicks on the "check" and "delete" buttons
